@@ -1,6 +1,7 @@
 package template
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path"
@@ -140,6 +141,13 @@ func generateFile(t *template.Template, data *Data, filename string, outputFile 
 		_, fileSplit = filepath.Split(filename)
 		file         = filepath.Join(*outputFile, fileSplit)
 	)
+
+	if _, err := os.Stat(*outputFile); errors.Is(err, os.ErrNotExist) {
+		err := os.Mkdir(*outputFile, os.ModePerm)
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
 
 	f, err := os.Create(file)
 	if err != nil {
