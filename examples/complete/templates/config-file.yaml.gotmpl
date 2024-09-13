@@ -1,0 +1,39 @@
+{{- include "examples/complete/config.yaml" -}}
+{{- $i := 1 }}
+Sum: {{ sum $i 10 }}
+Count: {{ count .files_path "/" }}
+Compare: {{ compare "a" "a" | bool 0 }}
+LastIndex: {{ lastIndex .files_path "/" }}
+Contains: {{ .working_dir | contains "/" }}
+ContainsAny: {{ .working_dir | containsAny "0" }}
+HasPrefix: {{ .working_dir | hasPrefix "go" }}
+HasSuffix: {{ .working_dir | hasSuffix "modeler" }}
+ReplaceAll: {{ replaceAll .working_dir "/" "/etc/" }}
+Split: 
+  {{ .files | arrayStr | yaml | nindent 2 | trim }}
+Join: {{ .items | join " " }}
+JSON: >-
+  {{ .textin | json | nindent 2 | trim }}
+YAML: >-
+  {{ .textin | yaml | nindent 2 | trim }}
+Files:
+{{ range .files | arrayStr  -}}
+- name: {{ . | withoutExtension }}
+  filename : {{ . | fileName }}
+  directory: {{ . | dirName }}
+  outputIn: {{ $.files_path }}
+  Extension: {{ . | extension }}
+{{ end }}
+TextInCase : |
+{{- with .textin }}
+  {{ .uppercase | upperCase }}
+  {{ .lowercase | lowerCase }}
+  {{ .titlecase | titleCase }}
+  {{ .capitalcase | capitalCase }}
+  {{ .pascalcase | pascalCase }}
+  {{ .camelcase | camelCase }}
+  {{ .snakecaselower | snakeCaseLower }}
+  {{ .snakecaseupper | snakeCaseUpper }}
+  {{ .kebabcaselower | kebabCaseLower }}
+  {{ .kebabcaseupper | kebabCaseUpper }}
+{{ end }}
