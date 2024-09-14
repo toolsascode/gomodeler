@@ -24,10 +24,7 @@ jobs:
         id: gotest
         run: |
           go test -coverprofile=coverage.out -cover ./... > report.out
-  
-          echo 'coverage<<EOF' >> $GITHUB_OUTPUT
-          cat report.out >> $GITHUB_OUTPUT
-          echo 'EOF' >> "$GITHUB_OUTPUT"
+          echo 'coverage=$( cat report.out | tr '\n' ' ')' >> $GITHUB_OUTPUT
       - name: Testing the CLI in basic mode
         run: make run
       - name: Testing the CLI in full mode
@@ -37,7 +34,7 @@ jobs:
         with:
           go-setup: 'false'
           environments: |
-            coverage=${{ steps.gotest.outputs.coverage }}
+            coverage="${{ steps.gotest.outputs.coverage }}"
           template: |
             ## Coverage report:
 
