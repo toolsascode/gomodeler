@@ -21,34 +21,26 @@ jobs:
       - name: Build
         run: go build -v ./cmd/gomodeler
       - name: Test with the Go CLI
-        run: go test ./...
+        id: gotest
+        run: |
+          go test -coverprofile=coverage.out -cover ./...
+          echo "coverage=$(cat coverage.out)" >> $GITHUB_OUTPUT
       - name: Testing the CLI in basic mode
         run: make run
       - name: Testing the CLI in full mode
         run: make run-test
-
       - name: Github Step Summary
         uses: ./.github/actions/summary
         with:
           environments: |
-            artifacts=${{ steps.goreleaser.outputs.artifacts }}
-            metadata=${{ steps.goreleaser.outputs.metadata }}
+            coverage=${{ steps.gotest.outputs.coverage }}
           template: |
-            ## Artifacts:
+            ## Coverage report:
 
             <details>
               <summary>Output</summary>
               ```json
-              {{ .artifacts }}
-              ```
-            </details>
-
-            ## Metadata:
-
-            <details>
-              <summary>Output</summary>
-              ```json
-              ${{ .metadata }}
+              {{ .coverage }}
               ```
             </details>
   
