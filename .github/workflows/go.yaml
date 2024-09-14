@@ -24,7 +24,10 @@ jobs:
         id: gotest
         run: |
           go test -coverprofile=coverage.out -cover ./... > report.out
-          echo "coverage=$(cat report.out)" >> $GITHUB_OUTPUT
+          delimiter="$(openssl rand -hex 8)"
+          echo "coverage<<${delimiter}" >> "${GITHUB_OUTPUT}"
+          cat report.out >> "${GITHUB_OUTPUT}"
+          echo "${delimiter}" >> "${GITHUB_OUTPUT}"
       - name: Testing the CLI in basic mode
         run: make run
       - name: Testing the CLI in full mode
