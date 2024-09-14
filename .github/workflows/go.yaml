@@ -41,7 +41,7 @@ jobs:
             <details>
               <summary>Output</summary>
               ```json
-              {{ .coverage }}
+              \{\{ .coverage \}\}
               ```
             </details>
   
