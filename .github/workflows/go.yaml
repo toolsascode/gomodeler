@@ -23,8 +23,8 @@ jobs:
       - name: Test with the Go CLI
         id: gotest
         run: |
-          go test -coverprofile=coverage.out -cover ./...
-          echo "coverage=$(cat coverage.out)" >> $GITHUB_OUTPUT
+          go test -coverprofile=coverage.out -cover ./... > report.out
+          echo "coverage=$(cat report.out)" >> $GITHUB_OUTPUT
       - name: Testing the CLI in basic mode
         run: make run
       - name: Testing the CLI in full mode
