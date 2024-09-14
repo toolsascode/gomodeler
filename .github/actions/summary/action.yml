@@ -30,7 +30,7 @@ runs:
       shell: bash
       run: | 
         mkdir -p ./template
-        echo "${{ inputs.template }}" > ./template/summary.md.yaml
+        echo "${{ inputs.template }}" | sed 's|#{|{{|g' | sed 's|}#|}}|g' > ./template/summary.md.yaml
         cat ./template/summary.md.yaml
     - if: ${{ inputs.go-setup == 'true' }}
       name: Setup Go
