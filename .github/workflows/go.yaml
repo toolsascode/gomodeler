@@ -35,6 +35,7 @@ jobs:
       - name: Github Step Summary
         uses: ./.github/actions/summary
         with:
+          go-setup: 'false'
           environments: |
             coverage=${{ steps.gotest.outputs.coverage }}
           template: |

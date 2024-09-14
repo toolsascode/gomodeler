@@ -6,6 +6,10 @@ branding:
   color: 'green'
 
 inputs:
+  go-setup:
+    description: 'Go setup'
+    required: true
+    default: 'true'
   environments:
     description: 'List of environments'
     required: false
@@ -26,7 +30,8 @@ runs:
       run: |
         mkdir -p ./template
         echo "${{ inputs.template }}" > ./template/summary.md.yaml
-    - name: Setup Go
+    - if: ${{ inputs.go-setup == 'true' }}
+      name: Setup Go
       uses: actions/setup-go@v5
       with:
         go-version: '1.22.x'
