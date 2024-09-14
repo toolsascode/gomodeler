@@ -28,15 +28,18 @@ jobs:
         run: make run-test
 
       - name: Github Step Summary
-        run: |
-          {
-            echo 'JSON_RESPONSE<<EOF'
+        uses: ./.github/actions/summary
+        with:
+          environments: |
+            artifacts=${{ steps.goreleaser.outputs.artifacts }}
+            metadata=${{ steps.goreleaser.outputs.metadata }}
+          template: |
             ## Artifacts:
 
             <details>
               <summary>Output</summary>
               ```json
-              ${{ steps.goreleaser.outputs.artifacts }}
+              {{ .artifacts }}
               ```
             </details>
 
@@ -45,8 +48,7 @@ jobs:
             <details>
               <summary>Output</summary>
               ```json
-              ${{ steps.goreleaser.outputs.metadata }}
+              ${{ .metadata }}
               ```
             </details>
-            echo EOF
-          } >> $GITHUB_STEP_SUMMARY
+  

@@ -1,0 +1,39 @@
+name: 'Go Modeler for Step Summary'
+description: 'Add a pre-formatted template file summary'
+
+branding:
+  icon: 'file-text'
+  color: 'green'
+
+inputs:
+  environments:
+    description: 'List of environments'
+    required: false
+    default: ""
+  template:
+    description: 'Go template'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: List of environments
+      shell: bash
+      run: |
+        echo "${{ inputs.environments }}" | sed 's|=|: |g' > envFile.yaml
+    - name: List of environments
+      shell: bash
+      run: |
+        mkdir -p ./template
+        echo "${{ inputs.template }}" > ./template/summary.md.yaml
+    - name: Setup Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.22.x'
+    - name: Rendering template
+      shell: bash
+      run: |
+        go run ./cmd/gomodeler -f ./envFile.yaml --template-path ./template --output-path ./outputs --log-level debug
+    - name: Sent information to Step Summary
+      shell: bash
+      run: cat ./outputs/summary.md >> $GITHUB_STEP_SUMMARY
