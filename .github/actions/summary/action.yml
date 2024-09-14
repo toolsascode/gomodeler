@@ -34,14 +34,18 @@ runs:
       shell: bash
       run: |
         echo "${{ inputs.environments }}" | sed 's|=|: >- \n  |g' > envFile.yaml
+        echo "::group::Environments file:"
         cat envFile.yaml
+        echo "::endgroup::"
         mkdir -p ./template
     - if: ${{ inputs.template != '' }}
       name: Tuning the model
       shell: bash
       run: | 
         echo "${{ inputs.template }}" > ./template/summary.md.yaml
+        echo "::group::Summary MD File:"
         cat ./template/summary.md.yaml
+        echo "::endgroup::"
     - if: ${{ inputs.template-file != '' }}
       name: Tuning the model
       shell: bash
@@ -64,4 +68,4 @@ runs:
 
     - name: Sent information to Step Summary
       shell: bash
-      run: cat ./outputs/summary.md >> $GITHUB_STEP_SUMMARY
+      run: cat ./outputs/* >> $GITHUB_STEP_SUMMARY
