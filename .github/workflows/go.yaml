@@ -25,9 +25,9 @@ jobs:
         run: |
           go test -coverprofile=coverage.out -cover ./... > report.out
   
-          echo "coverage<<EOF"
+          echo 'coverage<<EOF'
           cat report.out
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo EOF >> "$GITHUB_OUTPUT"
       - name: Testing the CLI in basic mode
         run: make run
       - name: Testing the CLI in full mode
