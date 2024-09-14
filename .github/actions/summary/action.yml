@@ -15,8 +15,17 @@ inputs:
     required: false
     default: ""
   template:
-    description: 'Go template'
-    required: true
+    description: 'Template input block'
+    required: false
+    default: ""
+  template-file:
+    description: 'Template file'
+    required: false
+    default: ""
+  template-path:
+    description: 'Template Path'
+    required: false
+    default: ""
 
 runs:
   using: "composite"
@@ -26,12 +35,23 @@ runs:
       run: |
         echo "${{ inputs.environments }}" | sed 's|=|: >- \n  |g' > envFile.yaml
         cat envFile.yaml
-    - name: List of environments
+        mkdir -p ./template
+    - if: ${{ inputs.template != '' }}
+      name: Tuning the model
       shell: bash
       run: | 
-        mkdir -p ./template
-        echo "${{ inputs.template }}" | sed 's|#{|{{|g' | sed 's|}#|}}|g' > ./template/summary.md.yaml
+        echo "${{ inputs.template }}" > ./template/summary.md.yaml
         cat ./template/summary.md.yaml
+    - if: ${{ inputs.template-file != '' }}
+      name: Tuning the model
+      shell: bash
+      run: | 
+        cp "${{ inputs.template-file }}" ./template
+    - if: ${{ inputs.template-path != '' }}
+      name: Tuning the model
+      shell: bash
+      run: | 
+        cd ${{ inputs.template-path }} && cp -Rv ./* ./template
     - if: ${{ inputs.go-setup == 'true' }}
       name: Setup Go
       uses: actions/setup-go@v5
@@ -41,6 +61,7 @@ runs:
       shell: bash
       run: | 
         go run ./cmd/gomodeler -f ./envFile.yaml --template-path ./template --output-path ./outputs --log-level debug
+
     - name: Sent information to Step Summary
       shell: bash
       run: cat ./outputs/summary.md >> $GITHUB_STEP_SUMMARY

@@ -35,13 +35,5 @@ jobs:
           go-setup: 'false'
           environments: |
             coverage="${{ steps.gotest.outputs.coverage }}"
-          template: |
-            ## Coverage report:
-
-            <details>
-              <summary>Output</summary>
-              ```
-              #{ .coverage }#
-              ```
-            </details>
+          template-file: ./.github/workflows/templates/summary.md.gotmpl
   
