@@ -24,12 +24,14 @@ runs:
     - name: List of environments
       shell: bash
       run: |
-        echo "${{ inputs.environments }}" | sed 's|=|: |g' > envFile.yaml
+        echo "${{ inputs.environments }}" | sed 's|=|: >- \n  |g' > envFile.yaml
+        cat envFile.yaml
     - name: List of environments
       shell: bash
-      run: |
+      run: | 
         mkdir -p ./template
         echo "${{ inputs.template }}" > ./template/summary.md.yaml
+        cat ./template/summary.md.yaml
     - if: ${{ inputs.go-setup == 'true' }}
       name: Setup Go
       uses: actions/setup-go@v5
@@ -37,7 +39,7 @@ runs:
         go-version: '1.22.x'
     - name: Rendering template
       shell: bash
-      run: |
+      run: | 
         go run ./cmd/gomodeler -f ./envFile.yaml --template-path ./template --output-path ./outputs --log-level debug
     - name: Sent information to Step Summary
       shell: bash
