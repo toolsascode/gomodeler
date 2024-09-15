@@ -1,4 +1,4 @@
-package template
+package render
 
 import (
 	"errors"
@@ -14,11 +14,9 @@ import (
 	"github.com/toolsascode/gomodeler/internal/helpers"
 )
 
-type Data struct {
-	Env map[string]any
-}
+// Run
+func (c *Commands) Run() {
 
-func Run() {
 	var (
 		templateFileList = getTemplateFileList()
 		envData          = renderENV()
@@ -26,12 +24,13 @@ func Run() {
 
 	log.Debugf("Environments: %#v", envData)
 	for i, v := range templateFileList {
-		renderFile(envData, v, getOutputFile(i))
+		c.RenderFile(envData, v, getOutputFile(i))
 	}
 
 }
 
-func renderFile(data *Data, filename string, outputFile *string) {
+// RenderFile
+func (c *Commands) RenderFile(data *Data, filename string, outputFile *string) {
 
 	var (
 		fileExtName = ""

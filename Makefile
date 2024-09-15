@@ -30,6 +30,8 @@ run:
 .PHONY: run-test
 run-test:
 	@echo
+	@echo Cleaning up the outputs.
+	rm -rf ./examples/complete/outputs ./examples/summary/outputs
 	@echo Complete File testing
 	go run $(GOBASE)/cmd/gomodeler -f examples/complete/envFile.yaml --template-path examples/complete/templates --output-path examples/complete/outputs --log-level debug
 	@echo
@@ -39,12 +41,13 @@ run-test:
 
 .PHONY: build
 build:
-	go build -v -ldflags="-X 'main.Version=v.1.0-beta' -X 'main.commit=$(shell git rev-parse --short HEAD)' -X 'main.builtBy=$(shell id -u -n)' -X 'main.date=$(shell date)'" $(GOBASE)/cmd/gomodeler
+	go build -v -ldflags="-X 'main.Version=v0.1.0-beta' -X 'main.commit=$(shell git rev-parse --short HEAD)' -X 'main.builtBy=$(shell id -u -n)' -X 'main.date=$(shell date)'" $(GOBASE)/cmd/gomodeler
 
 .PHONY: version
 version:
-	go run -ldflags="-X 'main.version=v.1.0-beta' -X 'main.commit=$(shell git rev-parse --short HEAD)' -X 'main.builtBy=$(shell id -u -n)' -X 'main.date=$(shell date)'" $(GOBASE)/cmd/gomodeler version
-
+	go run -ldflags="-X 'main.version=v0.1.0-beta' -X 'main.commit=$(shell git rev-parse --short HEAD)' -X 'main.builtBy=$(shell id -u -n)' -X 'main.date=$(shell date)'" $(GOBASE)/cmd/gomodeler version
+	@echo
+	go run -ldflags="-X 'main.version=v0.1.0-beta' -X 'main.commit=$(shell git rev-parse --short HEAD)' -X 'main.builtBy=$(shell id -u -n)' -X 'main.date=$(shell date)'" $(GOBASE)/cmd/gomodeler -v
 .PHONY: help
 help: Makefile
 	@echo
