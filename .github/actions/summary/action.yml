@@ -1,0 +1,71 @@
+name: 'Go Modeler for Step Summary'
+description: 'Add a pre-formatted template file summary'
+
+branding:
+  icon: 'file-text'
+  color: 'green'
+
+inputs:
+  go-setup:
+    description: 'Go setup'
+    required: true
+    default: 'true'
+  environments:
+    description: 'List of environments'
+    required: false
+    default: ""
+  template:
+    description: 'Template input block'
+    required: false
+    default: ""
+  template-file:
+    description: 'Template file'
+    required: false
+    default: ""
+  template-path:
+    description: 'Template Path'
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: List of environments
+      shell: bash
+      run: |
+        echo "${{ inputs.environments }}" | sed 's|=|: >- \n  |g' > envFile.yaml
+        echo "::group::Environments file:"
+        cat envFile.yaml
+        echo "::endgroup::"
+        mkdir -p ./template
+    - if: ${{ inputs.template != '' }}
+      name: Tuning the model
+      shell: bash
+      run: | 
+        echo "${{ inputs.template }}" > ./template/summary.md.yaml
+        echo "::group::Summary MD File:"
+        cat ./template/summary.md.yaml
+        echo "::endgroup::"
+    - if: ${{ inputs.template-file != '' }}
+      name: Tuning the model
+      shell: bash
+      run: | 
+        cp "${{ inputs.template-file }}" ./template
+    - if: ${{ inputs.template-path != '' }}
+      name: Tuning the model
+      shell: bash
+      run: | 
+        cd ${{ inputs.template-path }} && cp -Rv ./* ./template
+    - if: ${{ inputs.go-setup == 'true' }}
+      name: Setup Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.22.x'
+    - name: Rendering template
+      shell: bash
+      run: | 
+        go run ./cmd/gomodeler -f ./envFile.yaml --template-path ./template --output-path ./outputs --log-level debug
+
+    - name: Sent information to Step Summary
+      shell: bash
+      run: cat ./outputs/* >> $GITHUB_STEP_SUMMARY

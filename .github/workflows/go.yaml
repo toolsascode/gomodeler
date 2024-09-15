@@ -1,0 +1,39 @@
+name: Testing
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22.x'
+      - name: Install dependencies
+        run: go get ./cmd/gomodeler
+      - name: Build
+        run: go build -v ./cmd/gomodeler
+      - name: Test with the Go CLI
+        id: gotest
+        run: |
+          go test -coverprofile=coverage.out -cover ./... > report.out
+          echo "coverage=$( cat report.out | tr '\n' ' ')" >> $GITHUB_OUTPUT
+      - name: Testing the CLI in basic mode
+        run: make run
+      - name: Testing the CLI in full mode
+        run: make run-test
+      - name: Github Step Summary
+        uses: ./.github/actions/summary
+        with:
+          go-setup: 'false'
+          environments: |
+            coverage="${{ steps.gotest.outputs.coverage }}"
+          template-file: ./.github/workflows/templates/summary-coverage.md.gotmpl
+  
