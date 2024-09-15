@@ -61,21 +61,22 @@ changelog:
       - "^docs:"
       - "^test:"
 
+# https://github.com/settings/tokens/new?scopes=gist,public_repo&description=Homebrew
 brews:
   - name: gomodeler
     url_template: "https://github.com/toolsascode/gomodeler/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+    url_headers:
+      - "Accept: application/octet-stream"
+      - 'Authorization: bearer #{ENV["HOMEBREW_GITHUB_API_TOKEN"]}'
+    download_strategy: CurlDownloadStrategy
     commit_author:
       name: carlosrfjunior
       email: carlosrfjunior@gmail.com
     commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
     caveats: "How to use this binary"
     homepage: "https://github.com/toolsascode/gomodeler"
-    description: "gomodeler is a CLI that helps convert database tables into Protocol Buffers files (.proto)."
+    description: "Go Modeler is a small CLI and Library that brings the powerful features of the golang template into a simplified form."
     license: "Apache License 2.0"
-    repository:
-      owner: toolsascode
-      name: gomodeler
-      branch: main
 
 scoops:
   - name: gomodeler
@@ -85,9 +86,5 @@ scoops:
       email: carlosrfjunior@gmail.com
     commit_msg_template: "Scoop update for {{ .ProjectName }} version {{ .Tag }}"
     homepage: "https://github.com/toolsascode/gomodeler"
-    description: "gomodeler is a CLI that helps convert database tables into Protocol Buffers files (.proto)."
+    description: "Go Modeler is a small CLI and Library that brings the powerful features of the golang template into a simplified form."
     license: "Apache License 2.0"
-    repository:
-      owner: toolsascode
-      name: gomodeler
-      branch: main

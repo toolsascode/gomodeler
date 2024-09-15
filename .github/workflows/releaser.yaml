@@ -11,6 +11,7 @@ permissions:
   contents: write # needed to write releases
   id-token: write # needed for keyless signing
   packages: write # needed for ghcr access
+  issues: write
 
 jobs:
   publish:
@@ -29,7 +30,7 @@ jobs:
         uses: crazy-max/ghaction-import-gpg@v6
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-          passphrase: ${{ secrets.MODELER_PASSPHRASE }}
+          passphrase: ${{ secrets.PASSPHRASE }}
       - name: Run GoReleaser
         id: goreleaser
         uses: goreleaser/goreleaser-action@v6
@@ -37,7 +38,7 @@ jobs:
           version: "~> v2"
           args: release --clean
         env:
-          GITHUB_TOKEN: ${{ secrets.MODELER_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GPG_FINGERPRINT: ${{ steps.import_gpg.outputs.fingerprint }}
       - name: Upload assets
         uses: actions/upload-artifact@v4
@@ -46,26 +47,11 @@ jobs:
           path: dist/*
 
       - name: Github Step Summary
-        run: |
-          {
-            echo 'JSON_RESPONSE<<EOF'
-            ## Artifacts:
-
-            <details>
-              <summary>Output</summary>
-              ```json
-              ${{ steps.goreleaser.outputs.artifacts }}
-              ```
-            </details>
-
-            ## Metadata:
-
-            <details>
-              <summary>Output</summary>
-              ```json
-              ${{ steps.goreleaser.outputs.metadata }}
-              ```
-            </details>
-            echo EOF
-          } >> $GITHUB_STEP_SUMMARY
+        uses: ./.github/actions/summary
+        with:
+          go-setup: 'false'
+          environments: |
+            artifacts="${{ steps.goreleaser.outputs.artifacts }}"
+            metadata="${{ steps.goreleaser.outputs.metadata }}"
+          template-file: ./.github/workflows/templates/summary-goreleaser.md.gotmpl
             
