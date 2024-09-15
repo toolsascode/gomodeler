@@ -99,6 +99,7 @@ brews:
     repository:
       owner: toolsascode
       name: homebrew-tap
+      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
     commit_author:
       name: carlosrfjunior
       email: carlosrfjunior@gmail.com
