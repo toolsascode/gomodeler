@@ -78,13 +78,13 @@ brews:
     description: "Go Modeler is a small CLI and Library that brings the powerful features of the golang template into a simplified form."
     license: "Apache License 2.0"
 
-scoops:
-  - name: gomodeler
-    url_template: "https://github.com/toolsascode/gomodeler/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
-    commit_author:
-      name: carlosrfjunior
-      email: carlosrfjunior@gmail.com
-    commit_msg_template: "Scoop update for {{ .ProjectName }} version {{ .Tag }}"
-    homepage: "https://github.com/toolsascode/gomodeler"
-    description: "Go Modeler is a small CLI and Library that brings the powerful features of the golang template into a simplified form."
-    license: "Apache License 2.0"
+# scoops:
+#   - name: gomodeler
+#     url_template: "https://github.com/toolsascode/gomodeler/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+#     commit_author:
+#       name: carlosrfjunior
+#       email: carlosrfjunior@gmail.com
+#     commit_msg_template: "Scoop update for {{ .ProjectName }} version {{ .Tag }}"
+#     homepage: "https://github.com/toolsascode/gomodeler"
+#     description: "Go Modeler is a small CLI and Library that brings the powerful features of the golang template into a simplified form."
+#     license: "Apache License 2.0"
