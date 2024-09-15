@@ -49,6 +49,13 @@ See full documentation at [gomodeler.md](./docs/gomodeler.md)
 gomodeler -f root/envFile.yaml --template-path root/templates --output-path root/outputs
 ```
 
-Just check the `root/outputs` folder where all files will be generated.
+5. Just check the `root/outputs` folder where all files will be generated.
+
+## Exemplos:
+
+In the [examples](./examples/) folder, some examples and models of how to use the CLI are available.
+    - [Complete](./examples/complete/)
+    - [Summary](./examples/summary/)
+    - [Multiple templates](./examples/multiple-templates/)
 
 For more options run the `gomodeler --help` command or use `gomodeler [command] --help` for more information about a command. See [gomodeler.md](./docs/gomodeler.md)
