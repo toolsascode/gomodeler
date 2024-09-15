@@ -46,11 +46,11 @@ func ToSnakeCaseLower(t string) string {
 
 func ToCamelCase(t string) string {
 	var group []string
-	var firstCase = true
+	var firstCase bool
 
 	for _, v := range strings.Fields(t) {
-		if firstCase {
-			firstCase = false
+		if !firstCase {
+			firstCase = true
 			group = append(group, cases.Lower(language.English, cases.Compact).String(v))
 		} else {
 			group = append(group, cases.Title(language.English, cases.Compact).String(v))
@@ -98,12 +98,12 @@ func SumFunc(c, i int) int {
 	return c + i
 }
 
-func ToJson(data any) any {
+func ToJSON(data any) any {
 	output, _ := json.Marshal(data)
 	return string(output)
 }
 
-func ToYaml(data any) any {
+func ToYAML(data any) any {
 	output, _ := yaml.Marshal(data)
 	return string(output)
 }

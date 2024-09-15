@@ -76,11 +76,11 @@ func renderENV() *Data {
 		// }
 
 		viper.SetConfigType(extension)
-		viper.MergeConfig(f)
-		// viper.MergeConfigMap(storeKey)
+		_ = viper.MergeConfig(f)
+
 	}
 
-	viper.MergeConfigMap(envs)
+	_ = viper.MergeConfigMap(envs)
 
 	data := &Data{
 		Env: viper.GetViper().AllSettings(),
@@ -108,15 +108,14 @@ func getOutputFile(i int) *string {
 		}
 
 		return &outputFiles[i]
-	} else {
-
-		if outputPath == "" {
-			// outputPath, _ = filepath.Abs(filepath.Dir(os.Args[0]))
-			outputPath = "."
-		}
-
-		return &outputPath
 	}
+
+	if outputPath == "" {
+		// outputPath, _ = filepath.Abs(filepath.Dir(os.Args[0]))
+		outputPath = "."
+	}
+
+	return &outputPath
 
 }
 

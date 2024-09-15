@@ -12,9 +12,13 @@ before:
   hooks:
     - go mod tidy
     - go generate ./...
+    - ./scripts/completions.sh
+    - ./scripts/manpages.sh
+
+metadata:
+  mod_timestamp: "{{ .CommitTimestamp }}"
 
 builds:
-
   - env:
       - CGO_ENABLED=0
       - USERNAME=carlosrfjunior
@@ -27,6 +31,10 @@ builds:
       - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy={{ .Env.USERNAME }}
 
 archives:
+  - files:
+      - README.md
+      - LICENSE.md
+      - completions/*
   - format: tar.gz
     # this name template makes the OS and Arch compatible with the results of `uname`.
     name_template: >-
@@ -60,31 +68,50 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
+      - "^test\\("
+      - "merge conflict"
+      - Merge pull request
+      - Merge remote-tracking branch
+      - Merge branch
+      - go mod tidy
 
 # https://github.com/settings/tokens/new?scopes=gist,public_repo&description=Homebrew
 brews:
-  - name: gomodeler
-    url_template: "https://github.com/toolsascode/gomodeler/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
-    url_headers:
-      - "Accept: application/octet-stream"
-      - 'Authorization: bearer #{ENV["HOMEBREW_GITHUB_API_TOKEN"]}'
-    download_strategy: CurlDownloadStrategy
+  - repository:
+      owner: toolsascode
+      name: homebrew-tap
     commit_author:
       name: carlosrfjunior
       email: carlosrfjunior@gmail.com
     commit_msg_template: "Brew formula update for {{ .ProjectName }} version {{ .Tag }}"
-    caveats: "How to use this binary"
+    directory: Formula
+    goarm: "7"
     homepage: "https://github.com/toolsascode/gomodeler"
     description: "Go Modeler is a small CLI and Library that brings the powerful features of the golang template into a simplified form."
     license: "Apache License 2.0"
+    test: |
+      system "#{bin}/gomodeler version"
+    dependencies:
+      - name: go
+        type: optional
+      - name: git
+    extra_install: |-
+      bash_completion.install "completions/gomodeler.bash" => "gomodeler"
+      zsh_completion.install "completions/gomodeler.zsh" => "_gomodeler"
+      fish_completion.install "completions/gomodeler.fish"
+      man1.install "manpages/gomodeler.1.gz"
+
+
 
 # scoops:
-#   - name: gomodeler
-#     url_template: "https://github.com/toolsascode/gomodeler/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+#   - repository:
+#       owner: toolsascode
+#       name: scoop-bucket
 #     commit_author:
 #       name: carlosrfjunior
 #       email: carlosrfjunior@gmail.com
 #     commit_msg_template: "Scoop update for {{ .ProjectName }} version {{ .Tag }}"
+#     directory: bucket
 #     homepage: "https://github.com/toolsascode/gomodeler"
 #     description: "Go Modeler is a small CLI and Library that brings the powerful features of the golang template into a simplified form."
 #     license: "Apache License 2.0"
