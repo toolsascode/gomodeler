@@ -23,7 +23,6 @@ builds:
       - CGO_ENABLED=0
       - USERNAME=carlosrfjunior
     main: ./cmd/gomodeler
-    id: gomodeler
     goos:
       - linux
       - windows
@@ -97,8 +96,6 @@ changelog:
 # https://github.com/settings/tokens/new?scopes=gist,public_repo&description=Homebrew
 brews:
   - name: gomodeler
-    ids:
-    - gomodeler
     repository:
       owner: toolsascode
       name: homebrew-tap
