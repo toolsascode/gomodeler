@@ -28,8 +28,8 @@ run-test:
 	@echo Complete File testing
 	go run $(GOBASE)/cmd/gomodeler -f examples/complete/envFile.yaml --template-path examples/complete/templates --output-path examples/complete/outputs --log-level debug
 	@echo
-	@echo Summary File testing
-	go run $(GOBASE)/cmd/gomodeler -f examples/summary/envFile.yaml --template-file ./.github/workflows/templates/summary.md.gotmpl --output-path examples/summary/outputs --log-level debug
+	@echo Summary Files testing
+	go run $(GOBASE)/cmd/gomodeler -f examples/summary/envFile.yaml --template-path ./.github/workflows/templates --output-path examples/summary/outputs --log-level debug
 
 
 .PHONY: build
