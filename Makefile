@@ -6,9 +6,14 @@ GOBIN := $(GOBASE)/bin
 .PHONY: help
 all: help
 
-.PHONY: dev
+# .PHONY: dev
 # dev:
 # 	docker compose -f ./example/compose.yaml up --remove-orphans
+
+
+.PHONY: dist-test
+dist-test:
+	goreleaser --snapshot --clean --skip=publish
 
 .PHONY: test
 test:
