@@ -25,7 +25,7 @@ var funcMapInternal = template.FuncMap{
 	"hasSuffix":        strings.HasSuffix,
 	"include":          IncludeFile,
 	"join":             strings.Join,
-	"json":             ToJson,
+	"json":             ToJSON,
 	"kebabCaseLower":   ToKebabCaseLower,
 	"kebabCaseUpper":   ToKebabCaseUpper,
 	"lastIndex":        strings.LastIndex,
@@ -43,7 +43,7 @@ var funcMapInternal = template.FuncMap{
 	"titleCase":        strings.ToTitle,
 	"upperCase":        strings.ToUpper,
 	"withoutExtension": WithoutExtension,
-	"yaml":             ToYaml,
+	"yaml":             ToYAML,
 }
 
 // Funcs internals and Sprig

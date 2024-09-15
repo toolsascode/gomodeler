@@ -6,8 +6,6 @@ import (
 	"os"
 
 	log "github.com/sirupsen/logrus"
-
-	gomodeler "github.com/toolsascode/gomodeler/internal/template"
 )
 
 // Start application
@@ -26,7 +24,7 @@ func init() {
 
 }
 
-func Execute() error {
+func Execute() {
 
 	err := rootCmd.Execute()
 
@@ -35,11 +33,8 @@ func Execute() error {
 		os.Exit(1)
 	}
 
-	return err
 }
 
 func main() {
 	Execute()
-
-	gomodeler.Run()
 }

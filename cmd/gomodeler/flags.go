@@ -35,13 +35,13 @@ func initFlag() {
 	rootCmd.MarkFlagsOneRequired("output-path", "output-file")
 	rootCmd.MarkFlagsOneRequired("template-path", "template-file")
 
-	viper.BindPFlag("env", rootCmd.PersistentFlags().Lookup("env"))
-	viper.BindPFlag("envFile", rootCmd.PersistentFlags().Lookup("env-file"))
-	viper.BindPFlag("template.files", rootCmd.PersistentFlags().Lookup("template-file"))
-	viper.BindPFlag("template.path", rootCmd.PersistentFlags().Lookup("template-path"))
-	viper.BindPFlag("output.files", rootCmd.PersistentFlags().Lookup("output-file"))
-	viper.BindPFlag("output.path", rootCmd.PersistentFlags().Lookup("output-path"))
-	viper.BindPFlag("log.level", rootCmd.PersistentFlags().Lookup("log-level"))
+	_ = viper.BindPFlag("env", rootCmd.PersistentFlags().Lookup("env"))
+	_ = viper.BindPFlag("envFile", rootCmd.PersistentFlags().Lookup("env-file"))
+	_ = viper.BindPFlag("template.files", rootCmd.PersistentFlags().Lookup("template-file"))
+	_ = viper.BindPFlag("template.path", rootCmd.PersistentFlags().Lookup("template-path"))
+	_ = viper.BindPFlag("output.files", rootCmd.PersistentFlags().Lookup("output-file"))
+	_ = viper.BindPFlag("output.path", rootCmd.PersistentFlags().Lookup("output-path"))
+	_ = viper.BindPFlag("log.level", rootCmd.PersistentFlags().Lookup("log-level"))
 
 	viper.SetDefault("author", "Carlos Freitas <carlosrfjunior@gmail.com>")
 	viper.SetDefault("license", "Apache License 2.0")
@@ -50,7 +50,6 @@ func initFlag() {
 
 	rootCmd.AddCommand(versionCmd)
 	rootCmd.AddCommand(docsCmd)
-
-	// rootCmd.MarkPersistentFlagRequired("template-files")
+	rootCmd.AddCommand(manCmd)
 
 }

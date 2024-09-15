@@ -9,11 +9,9 @@ import (
 
 func ReadFilesDir(path string) []string {
 
-	var (
-		fileList []string
-	)
+	var fileList []string
 
-	if len(path) <= 0 {
+	if len(path) == 0 {
 		return nil
 	}
 

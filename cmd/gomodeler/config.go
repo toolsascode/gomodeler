@@ -31,7 +31,6 @@ func initConfig() {
 		home, err := homedir.Dir()
 		if err != nil {
 			log.Fatalln(err)
-			os.Exit(1)
 		}
 
 		// Search config in home directory with name ".cobra" (without extension).
