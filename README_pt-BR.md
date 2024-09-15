@@ -12,6 +12,11 @@ Nesse projeto contamos também com um conjunto de funções próprias e o arranj
 curl -sL https://api.github.com/repos/toolsascode/gomodeler/releases/latest | \
 jq -r '.assets[] | select(.name? | match("gomodeler-v.*.tar.gz$")) | .browser_download_url'
 ```
+### Homebrew
+
+```shell
+brew install toolsascode/tap/gomodeler
+```
 
 _*Em breve estaremos disponibilizando por outras fontes de instalação._
 

@@ -13,6 +13,12 @@ curl -sL https://api.github.com/repos/toolsascode/gomodeler/releases/latest | \
 jq -r '.assets[] | select(.name? | match("gomodeler-v.*.tar.gz$")) | .browser_download_url'
 ```
 
+### Homebrew
+
+```shell
+brew install toolsascode/tap/gomodeler
+```
+
 _*Soon we will be making it available through other installation sources._
 
 ## How to use?
