@@ -23,6 +23,7 @@ builds:
       - CGO_ENABLED=0
       - USERNAME=carlosrfjunior
     main: ./cmd/gomodeler
+    id: gomodeler
     goos:
       - linux
       - windows
@@ -31,23 +32,41 @@ builds:
       - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy={{ .Env.USERNAME }}
 
 archives:
-  - files:
-      - README.md
-      - LICENSE.md
-      - completions/*
-  - format: tar.gz
-    # this name template makes the OS and Arch compatible with the results of `uname`.
-    name_template: >-
-      {{ .ProjectName }}_
+  - name_template: >-
+      {{- .ProjectName }}_
       {{- title .Os }}_
       {{- if eq .Arch "amd64" }}x86_64
       {{- else if eq .Arch "386" }}i386
       {{- else }}{{ .Arch }}{{ end }}
-      {{- if .Arm }}v{{ .Arm }}{{ end }}
-    # use zip for windows archives
+      {{- if .Arm }}v{{ .Arm }}{{ end -}}
     format_overrides:
       - goos: windows
         format: zip
+    builds_info:
+      group: root
+      owner: root
+      mtime: "{{ .CommitDate }}"
+    files:
+      - src: README.md
+        info:
+          owner: root
+          group: root
+          mtime: "{{ .CommitDate }}"
+      - src: LICENSE.md
+        info:
+          owner: root
+          group: root
+          mtime: "{{ .CommitDate }}"
+      - src: completions/*
+        info:
+          owner: root
+          group: root
+          mtime: "{{ .CommitDate }}"
+      - src: manpages/*
+        info:
+          owner: root
+          group: root
+          mtime: "{{ .CommitDate }}"
 
 # https://github.com/crazy-max/ghaction-import-gpg
 signs:
@@ -77,7 +96,10 @@ changelog:
 
 # https://github.com/settings/tokens/new?scopes=gist,public_repo&description=Homebrew
 brews:
-  - repository:
+  - name: gomodeler
+    ids:
+    - gomodeler
+    repository:
       owner: toolsascode
       name: homebrew-tap
     commit_author:

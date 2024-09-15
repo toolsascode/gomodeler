@@ -32,8 +32,8 @@ func initFlag() {
 	rootCmd.PersistentFlags().StringVar(&outputPath, "output-path", "", "`Location` where rendered files are saved. To use this functionality, use the following format in the template {file name}.{extension file}.{extension template file}.")
 
 	// At least one is required.
-	rootCmd.MarkFlagsOneRequired("output-path", "output-file")
-	rootCmd.MarkFlagsOneRequired("template-path", "template-file")
+	// rootCmd.MarkFlagsOneRequired("output-path", "output-file")
+	// rootCmd.MarkFlagsOneRequired("template-path", "template-file")
 
 	_ = viper.BindPFlag("env", rootCmd.PersistentFlags().Lookup("env"))
 	_ = viper.BindPFlag("envFile", rootCmd.PersistentFlags().Lookup("env-file"))
