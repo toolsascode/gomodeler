@@ -99,7 +99,7 @@ brews:
     repository:
       owner: toolsascode
       name: homebrew-tap
-      token: "{{ .Env.TAP_GITHUB_TOKEN }}"
+      token: "{{ .Env.PA_TOKEN }}"
     commit_author:
       name: carlosrfjunior
       email: carlosrfjunior@gmail.com
@@ -121,17 +121,16 @@ brews:
       fish_completion.install "completions/gomodeler.fish"
       man1.install "manpages/gomodeler.1.gz"
 
-
-
-# scoops:
-#   - repository:
-#       owner: toolsascode
-#       name: scoop-bucket
-#     commit_author:
-#       name: carlosrfjunior
-#       email: carlosrfjunior@gmail.com
-#     commit_msg_template: "Scoop update for {{ .ProjectName }} version {{ .Tag }}"
-#     directory: bucket
-#     homepage: "https://github.com/toolsascode/gomodeler"
-#     description: "Go Modeler is a small CLI and Library that brings the powerful features of the golang template into a simplified form."
-#     license: "Apache License 2.0"
+scoops:
+  - repository:
+      owner: toolsascode
+      name: scoop-bucket
+      token: "{{ .Env.PA_TOKEN }}"
+    commit_author:
+      name: carlosrfjunior
+      email: carlosrfjunior@gmail.com
+    commit_msg_template: "Scoop update for {{ .ProjectName }} version {{ .Tag }}"
+    directory: bucket
+    homepage: "https://github.com/toolsascode/gomodeler"
+    description: "Go Modeler is a small CLI and Library that brings the powerful features of the golang template into a simplified form."
+    license: "Apache License 2.0"
