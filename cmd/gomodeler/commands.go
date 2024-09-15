@@ -12,18 +12,17 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/cobra/doc"
 
-	gomodeler "github.com/toolsascode/gomodeler/internal/template"
+	gom "github.com/toolsascode/gomodeler/pkg/template"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "gomodeler",
-	Short: "Go Modeler is a small CLI that brings the powerful features of the golang template into a simplified form.",
+	Use:     "gomodeler",
+	Version: getVersion(),
+	Short:   "Go Modeler is a small CLI that brings the powerful features of the golang template into a simplified form.",
 	Long: `GoModeler brings with it all the features that gotemplate provides in a less complex and easy to implement way, including extra features.
 	Complete documentation is available at https://github.com/toolsascode/gomodeler`,
 	Run: func(_ *cobra.Command, _ []string) {
-
-		gomodeler.Run()
-
+		gom.RunRender()
 	},
 }
 
@@ -33,9 +32,9 @@ var versionCmd = &cobra.Command{
 	Long:               `All software has versions. This is Go Modeler's`,
 	DisableFlagParsing: true,
 	Run: func(_ *cobra.Command, _ []string) {
-		fmt.Println("Version: ", version)
-		fmt.Println("Date: ", date)
-		fmt.Println("Commit: ", commit)
+		fmt.Println("Version\t:", version)
+		fmt.Println("Date\t:", date)
+		fmt.Println("Commit\t: ", commit)
 		fmt.Println("Built by: ", builtBy)
 	},
 }
