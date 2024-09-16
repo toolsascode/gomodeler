@@ -10,20 +10,18 @@ all: help
 # dev:
 # 	docker compose -f ./example/compose.yaml up --remove-orphans
 
-
 .PHONY: dist-test
 dist-test:
-	golangci-lint run
+	golangci-lint run ./...
 	goreleaser --snapshot --clean --skip=publish
 
 .PHONY: test
 test:
-	golangci-lint run
+	golangci-lint run ./...
 	go test -coverprofile=coverage.out -cover ./... && go tool cover -html=coverage.out -o coverage.html
 
 .PHONY: docs
 docs:
-	golangci-lint run
 	go run $(GOBASE) docs
 
 .PHONY: run
