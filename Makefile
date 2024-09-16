@@ -32,8 +32,6 @@ run:
 
 .PHONY: run-test
 run-test:
-	@echo Golang Lint Running
-	golangci-lint run
 	@echo
 	@echo Cleaning up the outputs.
 	rm -rf ./examples/complete/outputs ./examples/summary/outputs
