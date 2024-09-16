@@ -1,4 +1,4 @@
-# Go Modeler CLI and Library
+# Go Modeler CLI and Library [![Go Reference](https://pkg.go.dev/badge/github.com/toolsascode/gomodeler.svg)](https://pkg.go.dev/github.com/toolsascode/gomodeler)
 
 The objective of this project is to help those people who need a small software to carry out their template compilations easily and quickly. The version is available to be used as a small CLI or a library in `golang`. We use Golang's templating system to perform the main demands of the application.
 
@@ -7,7 +7,16 @@ In this project we also have a set of our own functions and the phenomenal arran
 
 ## How to install?
 
+### Go Install
+
+```shell
+go install github.com/toolsascode/gomodeler/cli@latest
+```
+
 ### Via Github
+
+- [Latest version](https://github.com/toolsascode/gomodeler/releases/latest)
+
 ```shell
 curl -sL https://api.github.com/repos/toolsascode/gomodeler/releases/latest | \
 jq -r '.assets[] | select(.name? | match("gomodeler-v.*.tar.gz$")) | .browser_download_url'
@@ -19,13 +28,21 @@ jq -r '.assets[] | select(.name? | match("gomodeler-v.*.tar.gz$")) | .browser_do
 brew install toolsascode/tap/gomodeler
 ```
 
+### Scoop
+
+1. Run **PowerShell as an Administrator** and:
+2. To add this bucket, run `scoop bucket add gomodeler-scoop https://github.com/toolsascode/scoop-bucket`.
+3. To install, do `scoop install gomodeler`.
+
 _*Soon we will be making it available through other installation sources._
 
 ## How to use?
+
 See full documentation at [gomodeler.md](./docs/gomodeler.md)
 
 1. Create a structure.
     **Example:**
+
     ```shell
     root/
         /templates/
@@ -57,7 +74,7 @@ gomodeler -f root/envFile.yaml --template-path root/templates --output-path root
 
 5. Just check the `root/outputs` folder where all files will be generated.
 
-## Exemplos:
+## Examples
 
 In the [examples](./examples/) folder, some examples and models of how to use the CLI are available.
     - [Complete](./examples/complete/)

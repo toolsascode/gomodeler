@@ -19,10 +19,12 @@ metadata:
   mod_timestamp: "{{ .CommitTimestamp }}"
 
 builds:
-  - env:
+  - id: "gomodeler"
+    binary: "gomodeler"
+    env:
       - CGO_ENABLED=0
       - USERNAME=carlosrfjunior
-    main: ./cmd/gomodeler
+    main: ./cli
     goos:
       - linux
       - windows
