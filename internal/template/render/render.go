@@ -22,7 +22,7 @@ func (c *Commands) Run() {
 		envData          = renderENV()
 	)
 
-	if len(templateFileList) <= 0 {
+	if len(templateFileList) == 0 {
 		log.Errorln("The GoModeler CLI did not identify any template files. Please check that the parameters were entered correctly.")
 		os.Exit(1)
 	}
@@ -64,7 +64,7 @@ func renderENV() *Data {
 		extension = "yaml"
 	)
 
-	if len(envFile) <= 0 && len(envs) <= 0 {
+	if len(envFile) == 0 && len(envs) == 0 {
 		log.Warnln("GoModeler CLI did not identify any environment variables. Execution will continue normally.")
 	}
 
