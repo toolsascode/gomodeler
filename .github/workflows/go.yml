@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: go get ./cli
       - name: Build
-        run: go build -v ./cli
+        run: go build -o gomodeler -v ./cli
       - name: Test with the Go CLI
         id: gotest
         run: |
