@@ -1,7 +1,7 @@
 # Go Modelo :: Functions Map
 
 | **Function Name** | **Default** | **Description** |
-| ---           | ---     | ---
+| ---           | ---     | --- |
 | **arrayStr** | | |
 | **bool** | | |
 | **camelCase** | | |
