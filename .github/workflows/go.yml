@@ -17,9 +17,9 @@ jobs:
         with:
           go-version: '1.23.x'
       - name: Install dependencies
-        run: go get ./cli
+        run: go get .
       - name: Build
-        run: go build -o gomodeler -v ./cli
+        run: go build -o gomodeler -v .
       - name: Test with the Go CLI
         id: gotest
         run: |

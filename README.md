@@ -10,7 +10,7 @@ In this project we also have a set of our own functions and the phenomenal arran
 ### Go Install
 
 ```shell
-go install github.com/toolsascode/gomodeler/cli@latest
+go install github.com/toolsascode/gomodeler@latest
 ```
 
 ### Via Github
@@ -77,8 +77,9 @@ gomodeler -f root/envFile.yaml --template-path root/templates --output-path root
 ## Examples
 
 In the [examples](./examples/) folder, some examples and models of how to use the CLI are available.
-    - [Complete](./examples/complete/)
-    - [Summary](./examples/summary/)
-    - [Multiple templates](./examples/multiple-templates/)
+
+- [Complete](./examples/complete/)
+- [Summary](./examples/summary/)
+- [Multiple templates](./examples/multiple-templates/)
 
 For more options run the `gomodeler --help` command or use `gomodeler [command] --help` for more information about a command. See [gomodeler.md](./docs/gomodeler.md)
