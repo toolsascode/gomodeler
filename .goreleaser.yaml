@@ -24,7 +24,7 @@ builds:
     env:
       - CGO_ENABLED=0
       - USERNAME=carlosrfjunior
-    main: ./cli
+    main: .
     goos:
       - linux
       - windows

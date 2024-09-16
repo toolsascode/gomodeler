@@ -64,7 +64,7 @@ runs:
     - name: Rendering template
       shell: bash
       run: | 
-        go run ./cli -f ./envFile.yaml --template-path ./template --output-path ./outputs --log-level debug
+        go run . -f ./envFile.yaml --template-path ./template --output-path ./outputs --log-level debug
 
     - name: Sent information to Step Summary
       shell: bash

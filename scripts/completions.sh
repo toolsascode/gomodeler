@@ -3,5 +3,5 @@ set -e
 rm -rf completions
 mkdir completions
 for sh in bash zsh fish; do
-	go run ./cli completion "$sh" > "completions/gomodeler.$sh"
+	go run . completion "$sh" > "completions/gomodeler.$sh"
 done
