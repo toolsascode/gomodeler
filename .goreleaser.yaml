@@ -53,7 +53,7 @@ archives:
           owner: root
           group: root
           mtime: "{{ .CommitDate }}"
-      - src: LICENSE.md
+      - src: LICENSE
         info:
           owner: root
           group: root
@@ -110,7 +110,7 @@ brews:
     goarm: "7"
     homepage: "https://github.com/toolsascode/gomodeler"
     description: "Go Modeler is a small CLI and Library that brings the powerful features of the golang template into a simplified form."
-    license: "Apache License 2.0"
+    license: "MIT"
     test: |
       system "#{bin}/gomodeler version"
     dependencies:
@@ -135,4 +135,4 @@ scoops:
     directory: bucket
     homepage: "https://github.com/toolsascode/gomodeler"
     description: "Go Modeler is a small CLI and Library that brings the powerful features of the golang template into a simplified form."
-    license: "Apache License 2.0"
+    license: "MIT"
