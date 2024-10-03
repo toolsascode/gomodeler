@@ -1,4 +1,5 @@
-# Go Modeler CLI and Library [![Go Reference](https://pkg.go.dev/badge/github.com/toolsascode/gomodeler.svg)](https://pkg.go.dev/github.com/toolsascode/gomodeler)
+# Go Modeler CLI and Library 
+[![Go Reference](https://pkg.go.dev/badge/github.com/toolsascode/gomodeler.svg)](https://pkg.go.dev/github.com/toolsascode/gomodeler) [![Dependabot Updates](https://github.com/toolsascode/gomodeler/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/toolsascode/gomodeler/actions/workflows/dependabot/dependabot-updates) [![Testing](https://github.com/toolsascode/gomodeler/actions/workflows/go.yml/badge.svg)](https://github.com/toolsascode/gomodeler/actions/workflows/go.yml) [![Publishing Version](https://github.com/toolsascode/gomodeler/actions/workflows/releaser.yml/badge.svg)](https://github.com/toolsascode/gomodeler/actions/workflows/releaser.yml)
 
 The objective of this project is to help those people who need a small software to carry out their template compilations easily and quickly. The version is available to be used as a small CLI or a library in `golang`. We use Golang's templating system to perform the main demands of the application.
 
@@ -18,8 +19,13 @@ go install github.com/toolsascode/gomodeler@latest
 - [Latest version](https://github.com/toolsascode/gomodeler/releases/latest)
 
 ```shell
-curl -sL https://api.github.com/repos/toolsascode/gomodeler/releases/latest | \
-jq -r '.assets[] | select(.name? | match("gomodeler-v.*.tar.gz$")) | .browser_download_url'
+curl -fLSs https://raw.githubusercontent.com/toolsascode/gomodeler/main/scripts/install.sh | bash
+```
+
+Or 
+
+```shell
+curl -fLSs https://raw.githubusercontent.com/toolsascode/gomodeler/main/scripts/install.sh | sudo bash
 ```
 
 ### Homebrew
