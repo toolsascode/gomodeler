@@ -18,8 +18,13 @@ go install github.com/toolsascode/gomodeler@latest
 - [Latest version](https://github.com/toolsascode/gomodeler/releases/latest)
 
 ```shell
-curl -sL https://api.github.com/repos/toolsascode/gomodeler/releases/latest | \
-jq -r '.assets[] | select(.name? | match("gomodeler-v.*.tar.gz$")) | .browser_download_url'
+curl -fLSs https://raw.githubusercontent.com/toolsascode/gomodeler/main/scripts/install.sh | bash
+```
+
+Or 
+
+```shell
+curl -fLSs https://raw.githubusercontent.com/toolsascode/gomodeler/main/scripts/install.sh | sudo bash
 ```
 
 ### Homebrew

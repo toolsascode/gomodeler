@@ -1,5 +1,5 @@
 # .github/workflows/release.yml
-name: Publishing Version via GoReleaser
+name: Publishing Version
 
 on:
   push:

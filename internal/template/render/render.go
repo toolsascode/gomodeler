@@ -162,12 +162,12 @@ func generateFile(t *template.Template, data *Data, filename string, outputFile 
 		return err
 	}
 
-	log.Debugf("File created: %s", file)
-
 	if err := t.Execute(f, data.Env); err != nil {
 		log.Panic(err)
 		return err
 	}
+
+	log.Infof("File created successfully: %s", file)
 
 	err = f.Close()
 	if err != nil {
