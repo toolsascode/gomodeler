@@ -1,48 +1,65 @@
+version: "2"
 run:
   go: "1.23"
-  timeout: 5m
 linters:
   enable:
-    - copyloopvar
-    - thelper
-    # - gofumpt
     - bodyclose
+    - copyloopvar
+    - depguard
+    - forbidigo
+    - gocritic
+    - misspell
+    - nolintlint
+    - revive
+    - tagliatelle
+    - testifylint
+    - thelper
     - tparallel
     - unconvert
     - unparam
     - wastedassign
-    - revive
-    - forbidigo
-    - tagliatelle
-    - misspell
-    - depguard
-    - testifylint
-    - gocritic
-    - nolintlint
-linters-settings:
-  gocritic:
-    disabled-checks:
-      - appendAssign
-  staticcheck:
-    checks:
-      - all
-      - "-SA1019"
-  forbidigo:
-    forbid:
-      - 'ioutil\.*'
-  tagliatelle:
-    case:
-      use-field-name: false
+  settings:
+    depguard:
       rules:
-        yaml: snake
-        json: snake
-  depguard:
-    rules:
-      main:
-        deny:
-          - pkg: "github.com/pkg/errors"
-            desc: "use stdlib instead"
-  testifylint:
-    enable-all: true
-    disable:
-      - error-is-as # false positive
+        main:
+          deny:
+            - pkg: github.com/pkg/errors
+              desc: use stdlib instead
+    forbidigo:
+      forbid:
+        - pattern: ioutil\.*
+    gocritic:
+      disabled-checks:
+        - appendAssign
+    staticcheck:
+      checks:
+        - -SA1019
+        - all
+    tagliatelle:
+      case:
+        rules:
+          json: snake
+          yaml: snake
+        use-field-name: false
+    testifylint:
+      enable-all: true
+      disable:
+        - error-is-as
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

@@ -1,7 +1,8 @@
 module github.com/toolsascode/gomodeler
 
-go 1.22.5
-toolchain go1.24.1
+go 1.23.0
+
+toolchain go1.24.2
 
 require (
 	github.com/sirupsen/logrus v1.9.3
