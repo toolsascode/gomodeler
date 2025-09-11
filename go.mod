@@ -22,7 +22,7 @@ require (
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
-	github.com/muesli/mango v0.1.0 // indirect
+	github.com/muesli/mango v0.2.0 // indirect
 	github.com/muesli/mango-pflag v0.1.0 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
@@ -41,7 +41,7 @@ require (
 require (
 	github.com/Masterminds/sprig/v3 v3.3.0
 	github.com/mitchellh/go-homedir v1.1.0
-	github.com/muesli/mango-cobra v1.2.0
+	github.com/muesli/mango-cobra v1.3.0
 	github.com/muesli/roff v0.1.0
 	github.com/spf13/cobra v1.10.1
 	github.com/spf13/viper v1.20.1
