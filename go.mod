@@ -35,6 +35,7 @@ require (
 	github.com/subosito/gotenv v1.6.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.9.0 // indirect
+	go.yaml.in/yaml/v3 v3.0.4 // indirect
 	golang.org/x/crypto v0.35.0 // indirect
 )
 
@@ -43,7 +44,7 @@ require (
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/muesli/mango-cobra v1.3.0
 	github.com/muesli/roff v0.1.0
-	github.com/spf13/cobra v1.10.1
+	github.com/spf13/cobra v1.10.2
 	github.com/spf13/viper v1.20.1
 	golang.org/x/sys v0.30.0 // indirect
 )
