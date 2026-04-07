@@ -5,8 +5,8 @@ go 1.24.0
 toolchain go1.24.2
 
 require (
+	golang.org/x/text v0.34.0
 	github.com/sirupsen/logrus v1.9.4
-	golang.org/x/text v0.30.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
