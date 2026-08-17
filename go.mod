@@ -3,7 +3,7 @@ module github.com/toolsascode/gomodeler
 go 1.25.0
 
 require (
-	github.com/sirupsen/logrus v1.9.4
+	github.com/sirupsen/logrus v1.10.0
 	golang.org/x/text v0.40.0
 	gopkg.in/yaml.v3 v3.0.1
 )
