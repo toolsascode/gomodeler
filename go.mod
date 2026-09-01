@@ -34,7 +34,7 @@ require (
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.9.0 // indirect
 	go.yaml.in/yaml/v3 v3.0.4 // indirect
-	golang.org/x/crypto v0.45.0 // indirect
+	golang.org/x/crypto v0.52.0 // indirect
 )
 
 require (
@@ -44,5 +44,5 @@ require (
 	github.com/muesli/roff v0.1.0
 	github.com/spf13/cobra v1.10.2
 	github.com/spf13/viper v1.20.1
-	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/sys v0.45.0 // indirect
 )
