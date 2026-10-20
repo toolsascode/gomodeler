@@ -1,10 +1,10 @@
 module github.com/toolsascode/gomodeler
 
-go 1.25.0
+go 1.26.0
 
 require (
 	github.com/sirupsen/logrus v1.10.2
-	golang.org/x/text v0.40.0
+	golang.org/x/text v0.43.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
